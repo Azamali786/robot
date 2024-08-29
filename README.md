@@ -9,32 +9,56 @@ The robot's position and facing direction are tracked and updated as it executes
 ## Features
 
 - **Grid Navigation**: The robot navigates a 5x4 grid (by default), moving within the boundaries based on the commands provided.
-- **Directional Control**: The robot can turn to face North (`N`), East (`E`), South (`S`), or West (`W`).
-- **Movement Control**: The robot can move one step forward in the direction it is facing using the `M` command.
+- **Directional Control**: The robot can turn to face North (`N`), East (`E`), South (`S`), or West (`W`) or (`n`), East (`e`), South (`s`), or West (`w`)
+- **Movement Control**: The robot can move one step forward in the direction it is facing using the `M` or `m` command.
 - **Command Validation**: The program checks for any invalid commands and alerts the user if invalid characters are present in the input.
 - **User-Friendly**: Input commands are processed to ignore spaces and are case-insensitive.
 
-## Installation
+## Ways to run this code
+1. **Using ZIP provided**
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/your-username/robot-movement-simulator.git
-    cd robot-movement-simulator
-    ```
+    a- Running the robot simulator
+    - Unzip the zip robot.zip
+    - move inside robot directory
+    - run command : python3 -m venv venv                // to make enviroment venv
+    - run command : source venv/bin/activate            // to activate environment
+    - run command : pip install -r requirements.txt     // to install all dependencies liste din requirements.txt
+    - run command : python app/scr.py                   // to run the code of robot simulator
+    - entr user command in promt and you will get the current position of robot on console
 
-2. **Ensure you have Python 3.x installed**:
+    b- Running the test cases
+    - make sure you are in robot directory where two directories app and test are visible
+    - run command : pytest      // this will run the test case
+
+
+
+
+
+2. **Using Github link provided**
+    repo_url = https://github.com/Azamali786/robot.git
+
+    a- runing the robot simulator
+    - run command : git clone repo_url   // using above repo url clone the repo
+    - move inside robot directory
+    - run command : python3 -m venv venv                // to make enviroment venv
+    - run command : source venv/bin/activate            // to activate environment
+    - run command : pip install -r requirements.txt     // to install all dependencies liste din requirements.txt
+    - run command : python app/scr.py                   // to run the code of robot simulator
+    - entr user command in promt and you will get the current position of robot on console
+
+    b- Running the test cases
+    - make sure you are in robot directory where two directories app and test are visible
+    - run command : pytest      // this will run the test case
+
+
+
+## Notes
+1. **Ensure you have Python 3.x installed**:
     - You can check your Python version by running:
       ```bash
       python --version
       ```
-    - If you don’t have Python installed, download it from [python.org](https://www.python.org/downloads/).
-
-3. **Install pytest for testing** (if not already installed):
-    ```bash
-    pip install pytest
-    ```
-
-## Usage
+    - If you don’t have Python installed, download it from [python.org](https://www.python.org/downloads/)
 
 To use the Robot Movement Simulator:
 
@@ -59,12 +83,3 @@ To use the Robot Movement Simulator:
 4. **Command Validation**:
     - If the command contains invalid characters (e.g., `X`, `!`, `#`), the program will notify you and reject the command.
 
-## Example Interaction
-
-```plaintext
-$ python robot.py
-COMMAND: MSMMEMM
-Robot Location: (3, 2, E)
-
-COMMAND: q
-Goodbye!
