@@ -23,7 +23,7 @@ The robot's position and facing direction are tracked and updated as it executes
     - run command : python3 -m venv venv                // to make enviroment venv
     - run command : source venv/bin/activate            // to activate environment
     - run command : pip install -r requirements.txt     // to install all dependencies liste din requirements.txt
-    - run command : python app/scr.py                   // to run the code of robot simulator
+    - run command : python ./app/scr.py                   // to run the code of robot simulator
     - entr user command in promt and you will get the current position of robot on console
 
     b- Running the test cases
@@ -43,7 +43,7 @@ The robot's position and facing direction are tracked and updated as it executes
     - run command : python3 -m venv venv                // to make enviroment venv
     - run command : source venv/bin/activate            // to activate environment
     - run command : pip install -r requirements.txt     // to install all dependencies liste din requirements.txt
-    - run command : python app/scr.py                   // to run the code of robot simulator
+    - run command : python ./app/scr.py                   // to run the code of robot simulator
     - entr user command in promt and you will get the current position of robot on console
 
     b- Running the test cases
