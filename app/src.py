@@ -37,6 +37,93 @@ class Robot:
             'W': (0, -1)   # Move left
         }
 
+    def process_user_command(self, user_command):
+        """
+        Method to processs user commands in order
+        to make it executable
+        """
+        # remove all spaces from user_command given intentionally or unintentionally
+        user_command = user_command.replace(" ", "")
+
+        # convert to Upper Case 
+        user_command = user_command.upper()
+
+        return user_command
+
+    def validate_user_command(self, user_command):
+        """
+        Method to validate given user command
+        return:
+            (Bool, invalid_values)
+        """
+
+        # valid values for the user command
+        valid_command_values = {"E", "W", "N", "S", "M", "e", "w", "n", "s", "m", " "}  # Using a set for faster lookup
+
+        # Check for any invalid command
+        invalid_values = set(user_command) - valid_command_values
+
+        if invalid_values:
+            return (False, invalid_values)
+        
+        return (True, None)
+
+    def execute_commands(self, commands):
+        """
+        Executes a sequence of commands to move and/or turn the robot.
+
+        Parameters
+        ----------
+        commands : str
+            A string of commands where each command is either:
+            - 'N', 'E', 'S', 'W': Turns the robot to face North, East, South, or West.
+            - 'M': Moves the robot one step in the direction it is currently facing.
+        """
+        
+        for command in commands:
+            if command in self.directions:
+                self.turn(command)
+            elif command == 'M':
+                self.move()
+
+    
+    def turn(self, new_direction):
+        """
+        Turns the robot to face a new direction.
+
+        Parameters
+        ----------
+        new_direction : str
+            The new direction for the robot to face ('N', 'E', 'S', 'W').
+        """
+        if self.direction != new_direction:
+            self.direction = new_direction
+    
+    def move(self):
+        """
+        Moves the robot one step in the direction it is currently facing.
+        If the move would take the robot out of the grid bounds, the move is not executed.
+        """
+        move_row, move_col = self.direction_moves[self.direction]
+        new_row = self.position[0] + move_row
+        new_col = self.position[1] + move_col
+        
+        # Check for grid boundaries
+        if 0 <= new_row < self.grid_rows and 0 <= new_col < self.grid_cols:
+            self.position = (new_row, new_col)
+    
+    def get_position(self):
+        """
+        Returns the current position and direction of the robot.
+
+        Returns
+        -------
+        str
+            The robot's position and direction in the format "Robot Location: (row, column, direction)".
+        """
+        return f"Robot Location: ({self.position[0]}, {self.position[1]}, {self.direction})"
+        # return f"Robot Location: {self.position + (self.direction,)}"
+
 
 if __name__ == "__main__":
 
@@ -58,7 +145,34 @@ if __name__ == "__main__":
     print(instructions)
     print("*" * 80)
 
+    while True:
+
+        # get the COMMAND input from the user
+        user_command = input("COMMAND: ")  # Input the command sequence
+
+        if user_command.lower() == "q":
+            break
+
+        # validate user_command in order to check against any invalid value in user_command
+        valid_user_command, invalid_commands = robot.validate_user_command(user_command)
+
     
+        if valid_user_command:
+
+            # process user command inorder to make it executable
+            user_command = robot.process_user_command(user_command)
+
+            # execute give user command
+            robot.execute_commands(user_command)
+
+            # get the current position of robot as per given command
+            print(robot.get_position())
+
+        else:
+            print(f"Invalid value(s) {', '.join(invalid_commands)} found in given COMMAND")
+
+    print("Goodbye!")
+
 
         
     
